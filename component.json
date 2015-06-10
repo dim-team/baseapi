@@ -1,0 +1,6 @@
+{
+   "name": "baseapi",
+   "version": "1.0.0",
+   "description": "baseapi module",
+   "main": "baseapi.js"
+}
