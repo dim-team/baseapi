@@ -47,10 +47,11 @@ BaseAPI.prototype = {
                 xhrFields: conf.xhrFields,
                 dataType: conf.dataType || 'json',
                 jsonp: conf.jsonp || 'callback',
+                beforeSend: conf.beforeSend || function () {},
                 success: function (res) {
                     //@todo 错误码处理
                     if (method = 'get') {
-                        _this.setCache(cacheKey, res, conf.expires);
+                        _this.setCache(cacheKey, res, conf.expires);  
                     }
                     var callbacks = _this.requestQueue[cacheKey];
                     _this.requestQueue[cacheKey] = null;
@@ -60,7 +61,8 @@ BaseAPI.prototype = {
                 },
                 error: function(){
                     _this.requestQueue[cacheKey] = null;
-                }
+                },
+                complete: conf.complete || function () {}
             });
         }
 
